@@ -97,6 +97,25 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
+    - task: DownloadGitHubRelease@0
+      inputs:
+        connection: 'github.com_cfrogjump'
+        userRepository: 'RavenProject/Ravencoin'
+        defaultVersionType: 'latest'
+        itemPattern: 'raven-*-*-linux*'
+        downloadPath: '$(System.ArtifactsDirectory)'
+    - task: Bash@3
+      displayName: Setup Environment
+      inputs:
+        targetType: 'inline'
+        script: |
+          cd ${RELEASE_PRIMARYARTIFACTSOURCEALIAS}
+          
+          mkdir linux64
+          
+          echo "Installing build dependencies"
+          bash -x .github/scripts/01-update-docker.sh
+          echo ""
     - task: Bash@3
       inputs:
         targetType: 'inline'
