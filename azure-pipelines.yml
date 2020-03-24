@@ -85,12 +85,12 @@ stages:
           echo ""
           echo "Hell yeah!"
     - task: Docker@2
-    inputs:
-      containerRegistry: 'dockerhub_cadecall'
-      repository: 'ravenproject/ravend'
-      command: 'buildAndPush'
-      Dockerfile: '$(Build.SourcesDirectory)/Dockerfile.amd64'
-      tags: 'amd64-$(Build.BuildNumber)'
+      inputs:
+        containerRegistry: 'dockerhub_cadecall'
+        repository: 'ravenproject/ravend'
+        command: 'buildAndPush'
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile.amd64'
+        tags: 'amd64-$(Build.BuildNumber)'
 
   - job: Build arm32v7 image
     displayName: Build arm32v7 image
