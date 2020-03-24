@@ -16,7 +16,7 @@ stages:
   displayName: Build Docker Images
 
   jobs:  
-  - job: Build amd64 image
+  - job: Build_amd64_image
     displayName: Build amd64 image
     pool:
       vmImage: 'ubuntu-latest'
@@ -92,7 +92,7 @@ stages:
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile.amd64'
         tags: 'amd64-$(Build.BuildNumber)'
 
-  - job: Build arm32v7 image
+  - job: Build_arm32v7_image
     displayName: Build arm32v7 image
     pool:
       vmImage: 'ubuntu-latest'
